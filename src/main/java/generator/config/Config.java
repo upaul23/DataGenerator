@@ -1,4 +1,4 @@
-package generator.properties;
+package generator.config;
 
 import lombok.Getter;
 
