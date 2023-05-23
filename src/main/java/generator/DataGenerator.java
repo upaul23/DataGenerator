@@ -1,13 +1,12 @@
 package generator;
 
 import generator.person.PersonGenerator;
-import generator.person.TestPerson;
 
 public class DataGenerator {
 
-    PersonGenerator personGenerator;
+    static private PersonGenerator personGenerator;
 
-    public PersonGenerator person(){
+    public static PersonGenerator person(){
         if(personGenerator == null){
             personGenerator =  new PersonGenerator();
         }
