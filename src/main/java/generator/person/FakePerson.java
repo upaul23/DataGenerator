@@ -9,8 +9,8 @@ import java.util.Date;
 @Builder
 public class FakePerson {
 
-    FIO fio;
-    Gender gender;
-    String birthDate;
+    private FIO fio;
+    private Gender gender;
+    private String birthDate;
 
 }

@@ -1,38 +1,28 @@
 package generator;
 
+import generator.documents.DocumentGenerator;
 import generator.person.PersonGenerator;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class DataGenerator {
 
     static private PersonGenerator personGenerator;
+    static private DocumentGenerator documentGenerator;
 
-    public static PersonGenerator person(){
+    public static PersonGenerator persons(){
         if(personGenerator == null){
-            personGenerator =  new PersonGenerator();
+            personGenerator = new PersonGenerator();
         }
         return personGenerator;
     }
 
-    public static String getRandomDate(Integer minYear, Integer maxYear) {
-        GregorianCalendar gc = new GregorianCalendar();
-
-        Integer year = (int) randomBetween(minYear, maxYear);
-        gc.set(Calendar.YEAR, year);
-
-        Integer dayOfYear = (int) randomBetween(1, gc.getActualMaximum(Calendar.DAY_OF_YEAR));
-        gc.set(Calendar.DAY_OF_YEAR, dayOfYear);
-
-        String date = String.format("%02d", gc.get(Calendar.DAY_OF_MONTH)) + "."
-                + String.format("%02d", gc.get(Calendar.MONTH) + 1) + "."
-                + gc.get(Calendar.YEAR);
-
-        return date;
+    public static DocumentGenerator documents(){
+        if(documentGenerator == null){
+            documentGenerator = new DocumentGenerator();
+        }
+        return documentGenerator;
     }
 
-    public static long randomBetween(long minValue, long maxValue) {
-        return minValue + Math.round(Math.random() * (maxValue - minValue));
-    }
+
+
+
 }

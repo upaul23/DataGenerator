@@ -3,21 +3,20 @@ package generator.person;
 import generator.DataGenerator;
 import generator.fileworker.ReaderFile;
 import generator.config.Config;
-import generator.randomizer.Randomizer;
+import generator.Randomizer.Randomizer;
 
 import java.util.List;
 
 public class PersonGenerator {
 
-    List<String> femaleNames;
-    List<String> maleNames;
-    List<String> surnames;
-    List<String> parentnames;
+    private List<String> femaleNames;
+    private List<String> maleNames;
+    private List<String> surnames;
+    private List<String> parentnames;
 
-    Config config = new Config();
-    Randomizer randomizer = new Randomizer();
-    int birthDayRangeStart;
-    int birthDayRangeEnd;
+    private Config config = new Config();
+    private int birthDayRangeStart;
+    private int birthDayRangeEnd;
 
     public PersonGenerator() {
         femaleNames = ReaderFile.readByLine(config.getProperties().getProperty("femalenames"));
@@ -39,26 +38,26 @@ public class PersonGenerator {
         if(gender.equals(Gender.FEMALE)){
             fio = FIO.builder()
                     .lastname(getFemaleLastName())
-                    .fisrtname(randomizer.getRandomElementFromList(femaleNames))
+                    .fisrtname(Randomizer.getRandomElementFromList(femaleNames))
                     .parentname(getFemaleParentName())
                     .build();
         }
         else {
             fio = FIO.builder()
-                    .lastname(randomizer.getRandomElementFromList(surnames))
-                    .fisrtname(randomizer.getRandomElementFromList(maleNames))
-                    .parentname(randomizer.getRandomElementFromList(parentnames))
+                    .lastname(Randomizer.getRandomElementFromList(surnames))
+                    .fisrtname(Randomizer.getRandomElementFromList(maleNames))
+                    .parentname(Randomizer.getRandomElementFromList(parentnames))
                     .build();
         }
         return FakePerson.builder()
                 .gender(gender)
                 .fio(fio)
-                .birthDate(DataGenerator.getRandomDate(birthDayRangeStart, birthDayRangeEnd))
+                .birthDate(Randomizer.getRandomDate(birthDayRangeStart, birthDayRangeEnd))
                 .build();
     }
 
     private String getFemaleLastName(){
-        String lastname = randomizer.getRandomElementFromList(surnames);
+        String lastname = Randomizer.getRandomElementFromList(surnames);
         if(lastname.substring(lastname.length() - 2, lastname.length()).equals("о")){
             return lastname;
         }
@@ -70,8 +69,8 @@ public class PersonGenerator {
         }
     }
 
-    public String getFemaleParentName(){
-        String parentname = randomizer.getRandomElementFromList(parentnames);
+    private String getFemaleParentName(){
+        String parentname = Randomizer.getRandomElementFromList(parentnames);
         return parentname.replaceAll("вич", "ова");
     }
 }
