@@ -1,6 +1,4 @@
-package generator.Randomizer;
-
-import generator.DataGenerator;
+package generator.randomizer;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -16,6 +14,12 @@ public class Randomizer {
 
     static public <T> T getRandomElementFromList(List<T> list){
         return list.get((int) randomBetween(0, list.size()-1));
+    }
+
+    static public <T extends Enum<T>> T getRandomEnum(Class<T> e){
+        T[] array = e.getEnumConstants();
+        return e.getEnumConstants()[new Random().nextInt(array.length)];
+
     }
 
     public static String getRandomDate(Integer minYear, Integer maxYear) {
@@ -56,4 +60,6 @@ public class Randomizer {
     public static long randomBetween(long minValue, long maxValue) {
         return minValue + Math.round(Math.random() * (maxValue - minValue));
     }
+
+
 }

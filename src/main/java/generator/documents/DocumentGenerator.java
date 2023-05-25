@@ -1,14 +1,14 @@
 package generator.documents;
 
 import generator.AbstractGenerator;
-import generator.DataGenerator;
-import generator.config.Config;
 import generator.fileworker.ReaderFile;
-import generator.Randomizer.Randomizer;
+import generator.randomizer.Randomizer;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Locale;
+
+import static generator.randomizer.Randomizer.getRandomNumber;
 
 public class DocumentGenerator extends AbstractGenerator {
 
@@ -20,7 +20,7 @@ public class DocumentGenerator extends AbstractGenerator {
         areas = ReaderFile.readByLine(config.getProperties().getProperty("area"));
     }
 
-    public FakeRussianPassport getRussianPassport(){
+    public FakeRussianPassport passport(){
         String city = Randomizer.getRandomElementFromList(cities);
         String area = Randomizer.getRandomElementFromList(areas);
         String issuedBy = String.format(
@@ -37,5 +37,39 @@ public class DocumentGenerator extends AbstractGenerator {
                 .code(Randomizer.getRandomNumber(6))
                 .build();
 
+    }
+
+    public String snils() {
+        String newSnils = generateSnilsChecksum(getRandomNumber(9));
+        return newSnils;
+    }
+
+    private String generateSnilsChecksum(String baseString) {
+        int index = 0;
+        int sum = 0;
+        byte[] var3 = baseString.getBytes();
+        int check = var3.length;
+
+        for (int var5 = 0; var5 < check; ++var5) {
+            byte snilsDigit = var3[var5];
+            sum += (snilsDigit - 48) * (9 - index);
+            ++index;
+        }
+
+        String checkDigit = "00";
+        if (sum < 100) {
+            checkDigit = Integer.toString(sum);
+        } else if (sum > 101) {
+            check = sum % 101;
+            if (check != 100) {
+                checkDigit = Integer.toString(check);
+            }
+        }
+
+        if (checkDigit.length() < 2) {
+            checkDigit = "0" + checkDigit;
+        }
+
+        return baseString + checkDigit;
     }
 }

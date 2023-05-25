@@ -11,7 +11,7 @@ public class DocumentSuite {
 
     @Test
     public void getPassport(){
-        FakeRussianPassport fakeRussianPassport = DataGenerator.documents().getRussianPassport();
+        FakeRussianPassport fakeRussianPassport = DataGenerator.documents().passport();
         Assertions.assertNotNull(fakeRussianPassport.getCode());
         Assertions.assertNotNull(fakeRussianPassport.getSeries());
         Assertions.assertNotNull(fakeRussianPassport.getIssued());
@@ -21,7 +21,18 @@ public class DocumentSuite {
 
     @Test
     public void checkThatPassportUnique(){
-        Assertions.assertEquals(100, IntStream.range(0, 100).mapToObj(i->(DataGenerator.documents().getRussianPassport()))
+        Assertions.assertEquals(100, IntStream.range(0, 100).mapToObj(i->(DataGenerator.documents().passport()))
+                .collect(Collectors.toSet()).size());
+    }
+
+    @Test
+    public void checkSnils(){
+        Assertions.assertEquals(11, DataGenerator.documents().snils().toCharArray().length);
+    }
+
+    @Test
+    public void checkThatSnilsUnique(){
+        Assertions.assertEquals(100, IntStream.range(0, 100).mapToObj(i->(DataGenerator.documents().snils()))
                 .collect(Collectors.toSet()).size());
     }
 }

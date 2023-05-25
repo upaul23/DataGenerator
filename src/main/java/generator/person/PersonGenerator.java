@@ -3,9 +3,11 @@ package generator.person;
 import generator.DataGenerator;
 import generator.fileworker.ReaderFile;
 import generator.config.Config;
-import generator.Randomizer.Randomizer;
+import generator.randomizer.Randomizer;
 
 import java.util.List;
+
+import static generator.randomizer.Randomizer.getRandomNumber;
 
 public class PersonGenerator {
 
@@ -73,4 +75,6 @@ public class PersonGenerator {
         String parentname = Randomizer.getRandomElementFromList(parentnames);
         return parentname.replaceAll("вич", "ова");
     }
+
+
 }
