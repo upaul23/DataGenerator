@@ -2,16 +2,16 @@ package generator.account;
 
 import lombok.Getter;
 
-public enum PROFILE {
+public enum PersoneType {
 
-    FINANCE("01"),
-    COMMERCIAL("02"),
-    NONPROFIT("03");
+    PERSON ("408"),
+    COMPANY ("407"),
+    BUDGET ("406");
 
     @Getter
     private String code;
 
-    PROFILE(String code) {
+    PersoneType(String code) {
         this.code = code;
     }
 }

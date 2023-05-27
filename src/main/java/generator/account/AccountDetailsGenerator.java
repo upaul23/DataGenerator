@@ -1,20 +1,21 @@
 package generator.account;
 
 import generator.AbstractGenerator;
+import generator.fileworker.ReaderFile;
+import generator.randomizer.Randomizer;
+
+import java.time.LocalDate;
+import java.util.List;
 
 import static generator.randomizer.Randomizer.*;
 
 
 public class AccountDetailsGenerator extends AbstractGenerator {
 
-    public FakeBankAccount personPaymnetAccount(){
-        return FakeBankAccount.builder().build();
-    }
-
-    public String account(PERSONE personeType, CURRENCY currency, PROFILE profile){
+    public String account(PersoneType personeType, Currency currency, ProfileType profileType){
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append(personeType.getCode());
-        stringBuffer.append(profile.getCode());
+        stringBuffer.append(profileType.getCode());
         stringBuffer.append(currency.getCode());
         stringBuffer.append("0");
         stringBuffer.append(getRandomNumber(11));
@@ -23,15 +24,15 @@ public class AccountDetailsGenerator extends AbstractGenerator {
 
     public String account(){
         return account(
-                getRandomEnum(PERSONE.class),
-                getRandomEnum(CURRENCY.class),
-                getRandomEnum(PROFILE.class)
+                getRandomEnum(PersoneType.class),
+                getRandomEnum(Currency.class),
+                getRandomEnum(ProfileType.class)
                 );
 
     }
 
 
-    public static String inn12() {
+    public String inn12() {
         Integer[] coefsArr1 = {7, 2, 4, 10, 3, 5, 9, 4, 6, 8, 0, 0};
         Integer[] coefsArr2 = {3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8, 0};
         Integer result1 = 0;
@@ -56,7 +57,7 @@ public class AccountDetailsGenerator extends AbstractGenerator {
         return inn.toString();
     }
 
-    public static String inn10() {
+    public String inn10() {
         Integer[] coefsArr = {2, 4, 10, 3, 5, 9, 4, 6, 8};
         Integer result = 0;
         StringBuilder inn = new StringBuilder();
@@ -70,5 +71,22 @@ public class AccountDetailsGenerator extends AbstractGenerator {
         inn.append(result);
         return inn.toString();
     }
+
+    public String ogrn() {
+        List<String[]> subjectList = ReaderFile.parseCsv(config.getProperties().getProperty("subject"));
+
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append(Randomizer.getRandomNumber(1)); //признак отнесения государственного регистрационного номера записи
+        stringBuffer.append(Randomizer.getRandomDate(2000, LocalDate.now().getYear()).substring(8,10)); //Год регистрации
+        stringBuffer.append(Randomizer.getRandomElementFromList(subjectList)[0]); // Регион регистрации
+        stringBuffer.append(Randomizer.getRandomNumber(2)); //Код налоговой инспекции
+        stringBuffer.append(Randomizer.getRandomNumber(5)); //Номер записи регистрации
+        Long ogrn = Long.valueOf(stringBuffer.toString());
+        Long controlNumber = ogrn % 11 == 10 ? 0 : (ogrn % 11);
+        stringBuffer.append(controlNumber);
+        return stringBuffer.toString();
+    }
+
+
 
 }

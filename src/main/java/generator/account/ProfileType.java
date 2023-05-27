@@ -2,16 +2,16 @@ package generator.account;
 
 import lombok.Getter;
 
-public enum CURRENCY {
+public enum ProfileType {
 
-    RUB ("810"),
-    EUR ("978"),
-    USD("840");
+    FINANCE("01"),
+    COMMERCIAL("02"),
+    NONPROFIT("03");
 
     @Getter
     private String code;
 
-    CURRENCY(String code) {
+    ProfileType(String code) {
         this.code = code;
     }
 }

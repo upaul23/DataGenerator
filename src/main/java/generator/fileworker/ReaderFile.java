@@ -1,9 +1,6 @@
 package generator.fileworker;
 
-import lombok.SneakyThrows;
-
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
@@ -23,6 +20,11 @@ public class ReaderFile {
         }
         BufferedReader reader = new BufferedReader(fileReader);
         return reader.lines().collect(Collectors.toList());
+    }
+
+    public static List<String[]> parseCsv(String path){
+        List<String> list = readByLine(path);
+        return list.stream().map(i -> i.split(",")).collect(Collectors.toList());
     }
 
 }
