@@ -32,7 +32,7 @@ public class AccountSuite {
 
     @Test
     public void checkOgrn(){
-        Assertions.assertEquals(12, DataGenerator.accountDetails().ogrn().length());
+        Assertions.assertEquals(13, DataGenerator.accountDetails().ogrn().length());
     }
 
 

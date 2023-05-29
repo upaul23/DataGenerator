@@ -1,6 +1,7 @@
 package generator;
 
 import generator.account.AccountDetailsGenerator;
+import generator.contacts.ContactsGenerator;
 import generator.documents.DocumentGenerator;
 import generator.person.PersonGenerator;
 
@@ -9,6 +10,8 @@ public class DataGenerator {
     static private PersonGenerator personGenerator;
     static private DocumentGenerator documentGenerator;
     static private AccountDetailsGenerator accountDetailsGenerator;
+
+    static private ContactsGenerator contactsGenerator;
 
     public static PersonGenerator persons(){
         if(personGenerator == null){
@@ -32,6 +35,11 @@ public class DataGenerator {
     }
 
 
-
+    public static ContactsGenerator contacts(){
+        if(contactsGenerator == null){
+            contactsGenerator = new ContactsGenerator();
+        }
+        return contactsGenerator;
+    }
 
 }

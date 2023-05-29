@@ -62,4 +62,48 @@ public class Randomizer {
     }
 
 
+    public static String getRandomString(Integer minLength, Integer maxLength) {
+        // Use english alphabet.
+        char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+
+        // Select length of the string
+        Integer length = new Random().nextInt(maxLength - minLength) + minLength;
+
+        for (int i = 0; i < length; i++) {
+            char c = chars[random.nextInt(chars.length)];
+            sb.append(c);
+        }
+
+        String res = sb.toString();
+        // Debug
+        //System.out.println("Random string: " + res);
+
+        return res;
+    }
+
+    public static String getRandomStringCyrilic(Integer minLength, Integer maxLength) {
+        // Use english alphabet.
+        char[] chars = "éöóêåíãøùçõúôûâàïðîëäæýÿ÷ñìèòüáþ¸".toCharArray();
+
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+
+        // Select length of the string
+        Integer length = new Random().nextInt(maxLength - minLength) + minLength;
+
+        for (int i = 0; i < length; i++) {
+            char c = chars[random.nextInt(chars.length)];
+            sb.append(c);
+        }
+
+        String res = sb.toString();
+        // Debug
+        //System.out.println("Random string: " + res);
+
+        return res;
+    }
+
 }
