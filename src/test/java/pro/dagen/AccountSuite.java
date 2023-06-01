@@ -1,8 +1,6 @@
 package pro.dagen;
 
-import pro.dagen.account.Currency;
-import pro.dagen.account.PersoneType;
-import pro.dagen.account.ProfileType;
+import pro.dagen.account.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -13,9 +11,10 @@ public class AccountSuite {
 
     @Test
     public void checkAccount(){
-        String accountNumber = DataGenerator.accountDetails().account(PersoneType.PERSON, Currency.RUB, ProfileType.COMMERCIAL);
-        Assertions.assertEquals(20, accountNumber.toCharArray().length);
-        Assertions.assertEquals("408028100", accountNumber.substring(0, 9));
+        FakeAccount accountNumber = DataGenerator.accountDetails().account(PersoneType.PERSON, Currency.RUB, ProfileType.COMMERCIAL,
+                DataGenerator.accountDetails().bank());
+        Assertions.assertEquals(20, accountNumber.getAccount().length());
+        Assertions.assertEquals("40802810", accountNumber.getAccount().substring(0, 8));
     }
 
     @Test
@@ -35,5 +34,10 @@ public class AccountSuite {
         Assertions.assertEquals(13, DataGenerator.accountDetails().ogrn().length());
     }
 
+    @Test
+    public void checkSuum(){
+        AccountDetailsGenerator accountDetailsGenerator = new AccountDetailsGenerator();
+        Assertions.assertEquals("40602810700000000025", accountDetailsGenerator.calcControlNumber("049805746", "40602810K00000000025"));
+    }
 
 }

@@ -36,7 +36,4 @@ public class PersonSuite {
         Assertions.assertEquals(100, IntStream.range(0, 100).mapToObj(i->(DataGenerator.persons().get())).collect(Collectors.toSet()).size());
     }
 
-    public void checkSnils(){
-
-    }
 }

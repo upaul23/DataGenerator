@@ -6,27 +6,37 @@ import pro.dagen.randomizer.Randomizer;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.IntStream;
 
 import static pro.dagen.randomizer.Randomizer.*;
 
 
 public class AccountDetailsGenerator extends AbstractGenerator {
 
-    public String account(PersoneType personeType, Currency currency, ProfileType profileType){
+    static List<String[]> banks = ReaderFile.parseCsv(config.getProperties().getProperty("banks"));
+
+    public FakeAccount account(PersoneType personeType, Currency currency, ProfileType profileType, Bank bank){
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append(personeType.getCode());
         stringBuffer.append(profileType.getCode());
         stringBuffer.append(currency.getCode());
-        stringBuffer.append("0");
+        stringBuffer.append("K");
         stringBuffer.append(getRandomNumber(11));
-        return stringBuffer.toString();
+        String account = calcControlNumber(bank.getBik(), stringBuffer.toString());
+        return FakeAccount.builder()
+                .account(account)
+                .bank(bank)
+                .build();
     }
 
-    public String account(){
+    public FakeAccount account(){
+        Bank bank = bank();
         return account(
                 getRandomEnum(PersoneType.class),
                 getRandomEnum(Currency.class),
-                getRandomEnum(ProfileType.class)
+                getRandomEnum(ProfileType.class),
+                bank
                 );
 
     }
@@ -87,6 +97,42 @@ public class AccountDetailsGenerator extends AbstractGenerator {
         return stringBuffer.toString();
     }
 
+    public Bank bank(){
+        String[] bankData = Randomizer.getRandomElementFromList(banks);
+        return Bank.builder()
+                .bik(bankData[0])
+                .name(bankData[1])
+                .city(bankData[2])
+                .correspondentAccount(bankData[3])
+                .build();
+    }
 
+    public String calcControlNumber(String bik, String account){
+        String bikSubstring = String.format(bik.substring(6,9));
+        String copyAccount = new String(account);
+        String bikAndCorr = bikSubstring + copyAccount.replaceAll("K", "0");
+        AtomicInteger checkSum = new AtomicInteger();
+        int[]coefficients = {7, 1, 3, 7, 1, 3, 7, 1, 3, 7, 1, 3, 7, 1, 3, 7, 1, 3, 7, 1, 3, 7, 1};
+        if(coefficients.length != bikAndCorr.toCharArray().length){
+            throw new IllegalArgumentException();
+        }
+        IntStream.range(0, coefficients.length).forEach(i -> {
+            int summ = coefficients[i] * Character.getNumericValue(bikAndCorr.toCharArray()[i]);
+            if(String.valueOf(summ).toCharArray().length == 2){
+                checkSum.addAndGet(Character.getNumericValue(String.valueOf(summ).toCharArray()[1]));
+            }
+            else {
+                checkSum.addAndGet(summ);
+            }
+
+        });
+        int s1 = Character.getNumericValue(String.valueOf(checkSum.get()).toCharArray()[1]) * 3;
+        if(String.valueOf(s1).toCharArray().length == 2){
+            return account.replaceAll("K", String.valueOf(String.valueOf(s1).toCharArray()[1]));
+        }
+        else {
+            return account.replaceAll("K", String.valueOf(String.valueOf(s1).toCharArray()[0]));
+        }
+    }
 
 }
