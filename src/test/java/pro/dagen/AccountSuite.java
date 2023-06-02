@@ -25,8 +25,8 @@ public class AccountSuite {
 
     @Test
     public void checkInn(){
-        Assertions.assertEquals(10, DataGenerator.accountDetails().inn10().toCharArray());
-        Assertions.assertEquals(12, DataGenerator.accountDetails().inn12().toCharArray());
+        Assertions.assertEquals(10, DataGenerator.accountDetails().inn10().toCharArray().length);
+        Assertions.assertEquals(12, DataGenerator.accountDetails().inn12().toCharArray().length);
     }
 
     @Test
