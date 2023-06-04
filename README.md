@@ -22,6 +22,7 @@ _DataGenerator.person().get(Gender.MALE)_ - метод возвращает эк
 _DataGenerator.documents().getRussianPassport()_ - метод возвращает экземпляр pro.dagen.documents.FakeRussianPassport
 
 **СНИЛС**
+
 _DataGenerator.documents().snils()_
 
 **Расчетный счет**
