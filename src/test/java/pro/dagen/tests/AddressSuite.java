@@ -1,7 +1,8 @@
-package pro.dagen;
+package pro.dagen.tests;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pro.dagen.DataGenerator;
 import pro.dagen.address.FakeAddress;
 
 public class AddressSuite {

@@ -1,8 +1,9 @@
-package pro.dagen;
+package pro.dagen.tests;
 
-import pro.dagen.account.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pro.dagen.DataGenerator;
+import pro.dagen.account.*;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

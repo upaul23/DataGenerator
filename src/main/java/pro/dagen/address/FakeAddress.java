@@ -1,6 +1,9 @@
 package pro.dagen.address;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Builder
 @NoArgsConstructor
@@ -19,34 +22,34 @@ public class FakeAddress {
 
 
     public String postalFormat(){
-        String formatAddress = String.format("%s, д. %s, кв. %s, г. %s, %s %s", street, building, flat, city, subject, postalCode);
+        String formatAddress = String.format("%s, пїЅ. %s, пїЅпїЅ. %s, пїЅ. %s, %s %s", street, building, flat, city, subject, postalCode);
         return shorty(formatAddress);
     }
 
     private String shorty(String address){
         String streetTypeShort = "";
-        if (address.contains("Улица") | address.contains("улица")){
-            streetTypeShort = "ул.";
+        if (address.contains("пїЅпїЅпїЅпїЅпїЅ") | address.contains("пїЅпїЅпїЅпїЅпїЅ")){
+            streetTypeShort = "пїЅпїЅ.";
         }
-        if (address.contains("Проспект") | address.contains("проспект")){
-            streetTypeShort = "просп.";
+        if (address.contains("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ") | address.contains("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")){
+            streetTypeShort = "пїЅпїЅпїЅпїЅпїЅ.";
         }
-        if(address.contains("Переулок") | address.contains("переулок")){
-            streetTypeShort = "пер.";
+        if(address.contains("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ") | address.contains("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")){
+            streetTypeShort = "пїЅпїЅпїЅ.";
         }
-        if(address.contains("Проезд") | address.contains("Проезд")){
-            streetTypeShort = "проезд";
+        if(address.contains("пїЅпїЅпїЅпїЅпїЅпїЅ") | address.contains("пїЅпїЅпїЅпїЅпїЅпїЅ")){
+            streetTypeShort = "пїЅпїЅпїЅпїЅпїЅпїЅ";
         }
-        address = address.replace("Республика", "респ.")
-                .replace("область", "обл.")
-                .replace("Улица", "")
-                .replace("улица", "")
-                .replace("Проспект", "")
-                .replace("проспект", "")
-                .replace("Переулок", "")
-                .replace("переулок", "")
-                .replace("Проезд", "")
-                .replace("проезд", "");
+        address = address.replace("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅ.")
+                .replace("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅ.")
+                .replace("пїЅпїЅпїЅпїЅпїЅ", "")
+                .replace("пїЅпїЅпїЅпїЅпїЅ", "")
+                .replace("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "")
+                .replace("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "")
+                .replace("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "")
+                .replace("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "")
+                .replace("пїЅпїЅпїЅпїЅпїЅпїЅ", "")
+                .replace("пїЅпїЅпїЅпїЅпїЅпїЅ", "");
         return String.format("%s %s", streetTypeShort, address);
     }
 }

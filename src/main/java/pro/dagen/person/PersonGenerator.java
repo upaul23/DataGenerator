@@ -1,7 +1,7 @@
 package pro.dagen.person;
 
-import pro.dagen.fileworker.ReaderFile;
 import pro.dagen.config.Config;
+import pro.dagen.fileworker.ReaderFile;
 import pro.dagen.randomizer.Randomizer;
 
 import java.util.List;
