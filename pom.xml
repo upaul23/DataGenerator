@@ -12,6 +12,20 @@
     <description>DataGenerator</description>
     <packaging>jar</packaging>
 
+    <scm>
+        <url>https://bitbucket.org/googolplex/devourer</url>
+        <connection>scm:hg:https://bitbucket.org/googolplex/devourer</connection>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>upaul23</id>
+            <name>Paul Umerov</name>
+            <email>paul.umerov@gmail.com</email>
+            <timezone>UTC+4</timezone>
+        </developer>
+    </developers>
+
     <properties>
         <maven.compiler.source>19</maven.compiler.source>
         <maven.compiler.target>19</maven.compiler.target>
