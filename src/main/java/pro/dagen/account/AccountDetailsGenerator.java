@@ -86,11 +86,11 @@ public class AccountDetailsGenerator extends AbstractGenerator {
         List<String[]> subjectList = ReaderFile.parseCsv(config.getProperties().getProperty("subject"));
 
         StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append(Randomizer.getRandomNumber(1)); //признак отнесения государственного регистрационного номера записи
-        stringBuffer.append(Randomizer.getRandomDate(2000, LocalDate.now().getYear()).substring(8,10)); //Год регистрации
-        stringBuffer.append(Randomizer.getRandomElementFromList(subjectList)[0]); // Регион регистрации
-        stringBuffer.append(Randomizer.getRandomNumber(2)); //Код налоговой инспекции
-        stringBuffer.append(Randomizer.getRandomNumber(5)); //Номер записи регистрации
+        stringBuffer.append(Randomizer.getRandomNumber(1)); //РїСЂРёР·РЅР°Рє РѕС‚РЅРµСЃРµРЅРёСЏ РіРѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅРѕРіРѕ СЂРµРіРёСЃС‚СЂР°С†РёРѕРЅРЅРѕРіРѕ РЅРѕРјРµСЂР° Р·Р°РїРёСЃРё
+        stringBuffer.append(Randomizer.getRandomDate(2000, LocalDate.now().getYear()).substring(8,10)); //Р“РѕРґ СЂРµРіРёСЃС‚СЂР°С†РёРё
+        stringBuffer.append(Randomizer.getRandomElementFromList(subjectList)[0]); // Р РµРіРёРѕРЅ СЂРµРіРёСЃС‚СЂР°С†РёРё
+        stringBuffer.append(Randomizer.getRandomNumber(2)); //РљРѕРґ РЅР°Р»РѕРіРѕРІРѕР№ РёРЅСЃРїРµРєС†РёРё
+        stringBuffer.append(Randomizer.getRandomNumber(5)); //РќРѕРјРµСЂ Р·Р°РїРёСЃРё СЂРµРіРёСЃС‚СЂР°С†РёРё
         Long ogrn = Long.valueOf(stringBuffer.toString());
         Long controlNumber = ogrn % 11 == 10 ? 0 : (ogrn % 11);
         stringBuffer.append(controlNumber);

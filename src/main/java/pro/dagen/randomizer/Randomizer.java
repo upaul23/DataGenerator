@@ -86,7 +86,7 @@ public class Randomizer {
 
     public static String getRandomStringCyrilic(Integer minLength, Integer maxLength) {
         // Use english alphabet.
-        char[] chars = "éöóêåíãøùçõúôûâàïğîëäæıÿ÷ñìèòüáş¸".toCharArray();
+        char[] chars = "Ğ¹Ñ†ÑƒĞºĞµĞ½Ğ³ÑˆÑ‰Ğ·Ñ…ÑŠÑ„Ñ‹Ğ²Ğ°Ğ¿Ñ€Ğ¾Ğ»Ğ´Ğ¶ÑÑÑ‡ÑĞ¼Ğ¸Ñ‚ÑŒĞ±ÑÑ‘".toCharArray();
 
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
