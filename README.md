@@ -64,4 +64,12 @@ _DataGenerator.contacts().email()_
 _DataGenerator.contacts().email("test.ru")_
 Возвращается строка в формате <случайная комбинация>@test.ru
 
+**Как подключить библиотеку? **
+Через maven зависимости:
+<dependency>
+            <groupId>pro.dagen</groupId>
+            <artifactId>datagenerator</artifactId>
+            <version>1.0</version>
+        </dependency>
+
 
