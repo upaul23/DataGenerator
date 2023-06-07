@@ -34,11 +34,11 @@ _DataGenerator.accountDetails().account(PersoneType.PERSON, Currency.RUB, Profil
 _DataGenerator.accountDetails().bank()_
 Метод возвращает экземпляр класса pro.dagen.account.Bank
 
-**ИИН для ФЛ**
+**ИНН для ФЛ**
 
 _DataGenerator.accountDetails().inn12()_
 
-**ИИН для ЮЛ**
+**ИНН для ЮЛ**
 
 _DataGenerator.accountDetails().inn10()_
 
