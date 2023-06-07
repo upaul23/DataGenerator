@@ -66,12 +66,13 @@ _DataGenerator.contacts().email("test.ru")_
 
 **Как подключить библиотеку?**
 
-<textarea rows="10" cols="200">
-<dependency>
+&lt;dependency&gt;
+
     <groupId>pro.dagen</groupId>
-    <artifactId>datagenerator</artifactId>
+    <artifactId>datagenerator</artifactId>        
     <version>1.0</version>
-</dependency>
-</textarea>
+    
+&lt;/dependency&gt;
+
 
 
