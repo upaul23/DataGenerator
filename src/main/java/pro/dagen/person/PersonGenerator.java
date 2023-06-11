@@ -24,7 +24,7 @@ public class PersonGenerator {
         parentnames = ReaderFile.readByLine(config.getProperties().getProperty("parentnames"));
         String range = config.getProperties().getProperty("yearOfBirthRange");
         birthDayRangeStart = Integer.parseInt(range.substring(0,4));
-        birthDayRangeEnd = Integer.parseInt(range.substring(4, range.length()));
+        birthDayRangeEnd = Integer.parseInt(range.substring(5, range.length()));
     }
 
     public FakePerson get(){
@@ -37,15 +37,15 @@ public class PersonGenerator {
         if(gender.equals(Gender.FEMALE)){
             fio = FIO.builder()
                     .lastname(getFemaleLastName())
-                    .fisrtname(Randomizer.getRandomElementFromList(femaleNames))
-                    .parentname(getFemaleParentName())
+                    .firstname(Randomizer.getRandomElementFromList(femaleNames))
+                    .parentName(getFemaleParentName())
                     .build();
         }
         else {
             fio = FIO.builder()
                     .lastname(Randomizer.getRandomElementFromList(surnames))
-                    .fisrtname(Randomizer.getRandomElementFromList(maleNames))
-                    .parentname(Randomizer.getRandomElementFromList(parentnames))
+                    .firstname(Randomizer.getRandomElementFromList(maleNames))
+                    .parentName(Randomizer.getRandomElementFromList(parentnames))
                     .build();
         }
         return FakePerson.builder()
@@ -57,10 +57,11 @@ public class PersonGenerator {
 
     private String getFemaleLastName(){
         String lastname = Randomizer.getRandomElementFromList(surnames);
-        if(lastname.substring(lastname.length() - 2, lastname.length()).equals("о")){
+        String substring = lastname.substring(lastname.length() - 2, lastname.length());
+        if(substring.equals("о")){
             return lastname;
         }
-        else if(lastname.substring(lastname.length() - 2, lastname.length()).equals("ва")){
+        else if(substring.equals("ва")){
             return lastname;
         }
         else {
@@ -69,8 +70,8 @@ public class PersonGenerator {
     }
 
     private String getFemaleParentName(){
-        String parentname = Randomizer.getRandomElementFromList(parentnames);
-        return parentname.replaceAll("вич", "ова");
+        String parentName = Randomizer.getRandomElementFromList(parentnames);
+        return parentName.replaceAll("вич", "ова");
     }
 
 

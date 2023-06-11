@@ -10,6 +10,7 @@ public class AddressSuite {
     @Test
     public void checkPostalAddress(){
         FakeAddress fakeAddress = DataGenerator.addressGenerator().address();
+        fakeAddress.postalFormat();
         Assertions.assertEquals(6, fakeAddress.getPostalCode().length());
         Assertions.assertNotNull(fakeAddress.getArea());
         Assertions.assertNotNull(fakeAddress.getBuilding());

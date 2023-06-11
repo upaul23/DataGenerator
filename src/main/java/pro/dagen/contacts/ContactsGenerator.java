@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ContactsGenerator extends AbstractGenerator {
-
     private List<String> domains;
 
     public ContactsGenerator() {
@@ -22,7 +21,6 @@ public class ContactsGenerator extends AbstractGenerator {
             421, 423, 424, 426, 427, 471, 472, 473, 474, 475, 481, 482, 483, 484, 485, 486, 487, 491, 492, 493, 494, 495,
             496, 498, 499, 301, 302, 336, 341, 342, 343, 345, 346, 347, 349, 351, 352, 353, 365, 381, 382, 383, 384, 385,
             388, 390, 391, 394, 395
-
     };
 
     public FakePhoneNumber mobile(){
@@ -47,7 +45,7 @@ public class ContactsGenerator extends AbstractGenerator {
      }
 
     public String email(String domain){
-        StringBuffer email = new StringBuffer();
+        StringBuilder email = new StringBuilder();
         email.append(Randomizer.getRandomString(5, 20));
         email.append("@");
         email.append(domain);
