@@ -7,11 +7,9 @@ import java.io.InputStream;
 import java.util.Properties;
 
 
-public class Config {
-    InputStream PROPERTIES_STREAM;
+public class Config {    InputStream PROPERTIES_STREAM;
     @Getter
     Properties properties;
-
     public Config() {
         properties = new Properties();
         PROPERTIES_STREAM = Thread.currentThread().getContextClassLoader().getResourceAsStream("dagen.properties");

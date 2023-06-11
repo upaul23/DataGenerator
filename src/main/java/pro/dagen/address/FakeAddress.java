@@ -10,22 +10,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class FakeAddress {
-
     private String postalCode;
     private String city;
     private String street;
     private String flat;
     private String building;
     private String area;
-
     private String subject;
-
-
     public String postalFormat(){
         String formatAddress = String.format("%s, д. %s, кв. %s, г. %s, %s %s", street.trim(), building, flat, city, subject, postalCode);
         return shorty(formatAddress);
     }
-
     private String shorty(String address){
         String streetTypeShort = "";
         if (address.contains("улица") | address.contains("Улица")){
