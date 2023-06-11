@@ -22,35 +22,36 @@ public class FakeAddress {
 
 
     public String postalFormat(){
-        String formatAddress = String.format("%s, �. %s, ��. %s, �. %s, %s %s", street, building, flat, city, subject, postalCode);
+        String formatAddress = String.format("%s, д. %s, кв. %s, г. %s, %s %s", street.trim(), building, flat, city, subject, postalCode);
         return shorty(formatAddress);
     }
 
     private String shorty(String address){
         String streetTypeShort = "";
-        if (address.contains("�����") | address.contains("�����")){
-            streetTypeShort = "��.";
+        if (address.contains("улица") | address.contains("Улица")){
+            streetTypeShort = "ул.";
         }
-        if (address.contains("��������") | address.contains("��������")){
-            streetTypeShort = "�����.";
+        if (address.contains("Проспект") | address.contains("проспект")){
+            streetTypeShort = "пр-т";
         }
-        if(address.contains("��������") | address.contains("��������")){
-            streetTypeShort = "���.";
+        if(address.contains("Проезд") | address.contains("проезд")){
+            streetTypeShort = "пр-д";
         }
-        if(address.contains("������") | address.contains("������")){
-            streetTypeShort = "������";
+        if(address.contains("переулок") | address.contains("Переулок")){
+            streetTypeShort = "пер.";
         }
-        address = address.replace("����������", "����.")
-                .replace("�������", "���.")
-                .replace("�����", "")
-                .replace("�����", "")
-                .replace("��������", "")
-                .replace("��������", "")
-                .replace("��������", "")
-                .replace("��������", "")
-                .replace("������", "")
-                .replace("������", "");
-        return String.format("%s %s", streetTypeShort, address);
+        address = address
+                .replace("область", "обл.")
+                .replace("Республика", "респ.")
+                .replace("проезд", "")
+                .replace("Проезд", "")
+                .replace("Переулок", "")
+                .replace("переулок", "")
+                .replace("улица", "")
+                .replace("Улица", "")
+                .replace("проспект", "")
+                .replace("Проспект", "");
+        return String.format("%s %s", streetTypeShort, address.trim());
     }
 }
 

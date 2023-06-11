@@ -37,15 +37,15 @@ public class PersonGenerator {
         if(gender.equals(Gender.FEMALE)){
             fio = FIO.builder()
                     .lastname(getFemaleLastName())
-                    .fisrtname(Randomizer.getRandomElementFromList(femaleNames))
-                    .parentname(getFemaleParentName())
+                    .firstname(Randomizer.getRandomElementFromList(femaleNames))
+                    .parentName(getFemaleParentName())
                     .build();
         }
         else {
             fio = FIO.builder()
                     .lastname(Randomizer.getRandomElementFromList(surnames))
-                    .fisrtname(Randomizer.getRandomElementFromList(maleNames))
-                    .parentname(Randomizer.getRandomElementFromList(parentnames))
+                    .firstname(Randomizer.getRandomElementFromList(maleNames))
+                    .parentName(Randomizer.getRandomElementFromList(parentnames))
                     .build();
         }
         return FakePerson.builder()
@@ -70,8 +70,8 @@ public class PersonGenerator {
     }
 
     private String getFemaleParentName(){
-        String parentname = Randomizer.getRandomElementFromList(parentnames);
-        return parentname.replaceAll("вич", "ова");
+        String parentName = Randomizer.getRandomElementFromList(parentnames);
+        return parentName.replaceAll("вич", "ова");
     }
 
 

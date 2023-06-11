@@ -7,7 +7,7 @@ import lombok.Data;
 @Builder
 public class FIO {
 
-    private String fisrtname;
+    private String firstname;
     private String lastname;
-    private String parentname;
+    private String parentName;
 }
