@@ -10,11 +10,18 @@
     <description>DataGenerator</description>
     <packaging>jar</packaging>
 
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
     <scm>
         <url>https://github.com/upaul23/DataGenarator</url>
         <connection>scm:git:https://github.com/upaul23/DataGenarator.git</connection>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <profiles>
         <profile>
