@@ -9,6 +9,7 @@
     <name>${project.groupId}:${project.artifactId}</name>
     <description>DataGenerator</description>
     <packaging>jar</packaging>
+    <url>https://github.com/upaul23/DataGenerator</url>
 
     <licenses>
         <license>
@@ -18,9 +19,8 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/upaul23/DataGenarator</url>
+        <url>https://github.com/upaul23/DataGenarator/tree/main</url>
         <connection>scm:git:https://github.com/upaul23/DataGenarator.git</connection>
-        <tag>HEAD</tag>
     </scm>
 
     <profiles>
