@@ -66,13 +66,13 @@ _DataGenerator.contacts().email("test.ru")_
 
 **Как подключить библиотеку?**
 
-&lt;dependency&gt;
-
+```xml
+<dependency>
     <groupId>pro.dagen</groupId>
     <artifactId>datagenerator</artifactId>        
-    <version>1.0</version>
-    
-&lt;/dependency&gt;
+    <version>1.0.2</version>
+</dependency>
+```
 
 
 
