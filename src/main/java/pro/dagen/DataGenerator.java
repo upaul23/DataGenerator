@@ -2,6 +2,7 @@ package pro.dagen;
 
 import pro.dagen.account.AccountDetailsGenerator;
 import pro.dagen.address.AddressGenerator;
+import pro.dagen.cars.CarsGenerator;
 import pro.dagen.contacts.ContactsGenerator;
 import pro.dagen.documents.DocumentGenerator;
 import pro.dagen.person.PersonGenerator;
@@ -13,6 +14,7 @@ public class DataGenerator {
     static private AccountDetailsGenerator accountDetailsGenerator;
     static private AddressGenerator addressGenerator;
     static private ContactsGenerator contactsGenerator;
+    static private CarsGenerator carsGenerator;
 
     public static PersonGenerator persons(){
         if(personGenerator == null){
@@ -48,6 +50,13 @@ public class DataGenerator {
             addressGenerator = new AddressGenerator();
         }
         return addressGenerator;
+    }
+
+    public static CarsGenerator carsGenerator(){
+        if(carsGenerator == null){
+            carsGenerator = new CarsGenerator();
+        }
+        return carsGenerator;
     }
 
 }

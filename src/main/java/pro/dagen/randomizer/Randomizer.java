@@ -72,6 +72,19 @@ public class Randomizer {
         return sb.toString();
     }
 
+    public static String getRandomStringCode(int length) {
+        char[] chars = "0123456789".toCharArray();
+
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+
+        for (int i = 0; i < length; i++) {
+            char c = chars[random.nextInt(chars.length)];
+            sb.append(c);
+        }
+        return sb.toString();
+    }
+
     public static String getRandomStringCyrilic(Integer minLength, Integer maxLength) {
         // Use english alphabet.
         char[] chars = "йцукенгшщзхъфывапролджэячсмитьбюё".toCharArray();
