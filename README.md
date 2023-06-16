@@ -47,8 +47,17 @@ DataGenerator.documents().snils()
 
 
 **Расчетный счет**
+
+Метод создания счета с заданными параметрами
+
 ```java
-DataGenerator.accountDetails().account(PersoneType.PERSON, Currency.RUB, ProfileType.COMMERCIAL, DataGenerator.accountDetails().bank())
+DataGenerator.accountDetails().account(PersoneType.PERSON, Currency.RUB, ProfileType.COMMERCIAL, DataGenerator.accountDetails().bank());
+```
+
+Метод создания счета со случайными параметрами
+
+```java
+DataGenerator.accountDetails().account();
 ```
 
 **Банковские данные**
