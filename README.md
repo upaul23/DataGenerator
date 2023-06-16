@@ -102,6 +102,15 @@ DataGenerator.contacts().email()
 DataGenerator.contacts().email("test.ru")
 ```
 
+**Автомобильные гос. номера**
+
+Метод возвращает экземпляр класса _FakeCarStateNumber_
+
+```java
+DataGenerator.carsGenerator().stateNumber()
+```
+
+
 
 **Как подключить библиотеку?**
 
