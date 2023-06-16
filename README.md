@@ -120,7 +120,7 @@ DataGenerator.carsGenerator().stateNumber()
 <dependency>
     <groupId>pro.dagen</groupId>
     <artifactId>datagenerator</artifactId>        
-    <version>1.0</version>    
+    <version>1.0.2</version>    
 </dependency>
 
 
