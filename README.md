@@ -61,19 +61,19 @@ DataGenerator.accountDetails().bank()
 
 **ИНН для ФЛ**
 ```java
-    DataGenerator.accountDetails().inn12()
+DataGenerator.accountDetails().inn12()
 ```
 
 
 **ИНН для ЮЛ**
 ```java
-    DataGenerator.accountDetails().inn10()
+DataGenerator.accountDetails().inn10()
 ```
 
 
 **ОГРН для ЮЛ**
 ```java
-    DataGenerator.accountDetails().ogrn()
+DataGenerator.accountDetails().ogrn()
 ```
 
 **Номер мобильного телефона**
@@ -88,7 +88,7 @@ DataGenerator.contacts().mobile()
 Возвращается строка в формате +7 XXX XXX XXXX
 
 ```java
-    DataGenerator.contacts().cityPhone()
+DataGenerator.contacts().cityPhone()
 ```
 
 **Адрес электронной почты**
