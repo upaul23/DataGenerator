@@ -3,8 +3,8 @@ package pro.dagen.creditCard;
 public enum CardType {
     MIR,
     VISA,
-    MASTER,
+    MASTERCARD,
     MAESTRO,
     UNIONPAY,
-    AMERICANEXPRESS;
+    AMERICANEXPRESS
 }

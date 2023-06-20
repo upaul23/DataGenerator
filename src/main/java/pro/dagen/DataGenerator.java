@@ -48,20 +48,20 @@ public class DataGenerator {
         return contactsGenerator;
     }
 
-    public static AddressGenerator addressGenerator(){
+    public static AddressGenerator address(){
         if(addressGenerator == null){
             addressGenerator = new AddressGenerator();
         }
         return addressGenerator;
     }
 
-    public static CarsGenerator carsGenerator(){
+    public static CarsGenerator cars(){
         if(carsGenerator == null){
             carsGenerator = new CarsGenerator();
         }
         return carsGenerator;
     }
-    public static CardGenerator cardGenerator(){
+    public static CardGenerator bankCard(){
         if(carsGenerator == null){
             cardGenerator = new CardGenerator();
         }

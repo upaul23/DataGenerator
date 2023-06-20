@@ -9,7 +9,7 @@ public class CarsSuite {
 
     @Test
     public void checkStateNumber(){
-        FakeCarStateNumber fakeCarStateNumber = DataGenerator.carsGenerator().stateNumber();
+        FakeCarStateNumber fakeCarStateNumber = DataGenerator.cars().stateNumber();
         Assertions.assertEquals(6, fakeCarStateNumber.getNumber().length());
         Assertions.assertNotNull(fakeCarStateNumber.getRegionCode());
         Assertions.assertNotNull(fakeCarStateNumber.getRegionName());

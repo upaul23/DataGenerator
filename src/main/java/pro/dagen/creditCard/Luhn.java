@@ -3,6 +3,7 @@ package pro.dagen.creditCard;
 public class Luhn {
 
     public final static boolean isValidLuhn(String value) {
+        System.out.println("Validate card number " + value);
         int sum = Character.getNumericValue(value.charAt(value.length() - 1));
         int parity = value.length() % 2;
         for (int i = value.length() - 2; i >= 0; i--) {
