@@ -38,7 +38,12 @@ public class CardSuite {
             FakeCard fakeCard = DataGenerator.bankCard().card(Banks.VTB, i, "Иван Иванов");
             Assertions.assertTrue(Luhn.isValidLuhn(fakeCard.getNumber()));
         });
+    }
 
+    @Test
+    public void checkType(){
+        FakeCard fakeCard = DataGenerator.bankCard().card(CardType.VISA);
+        Assertions.assertEquals("4", fakeCard.getNumber().substring(0, 1));
     }
 
 }

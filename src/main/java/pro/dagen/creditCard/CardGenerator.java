@@ -28,7 +28,7 @@ public class CardGenerator extends AbstractGenerator {
         log.info("Do card for type " + cardType.name());
         log.info("Do card for banl " + bank.name());
         String number = Randomizer.getRandomNumber(9);
-        List<String[]> filtredByType = getBankBins(bank).stream().filter(i -> i[1].equals(cardType.name())).collect(Collectors.toList());
+        List<String[]> filtredByType = getBankBins(bank).stream().filter(i -> i[1].equals(cardType.name())).toList();
         String bin;
         if(filtredByType.size() == 0){
             log.info("Не нашлось подходящего БИНа для указанного банка, поэтому БИН будет сгенерирован случайно");
@@ -48,6 +48,14 @@ public class CardGenerator extends AbstractGenerator {
                 .build();
     }
 
+    public FakeCard card(CardType cardType){
+        return card(
+                Randomizer.getRandomElementFromList(Arrays.asList(Banks.values())),
+                cardType,
+                DataGenerator.persons().get().getFio().toFI()
+        );
+    }
+
     public FakeCard card(){
         return card(
                 Randomizer.getRandomElementFromList(Arrays.asList(Banks.values())),
@@ -57,41 +65,27 @@ public class CardGenerator extends AbstractGenerator {
     }
 
     private List<String[]> getBankBins(Banks bank){
-        switch (bank){
-            case SBER -> {
-                return sber;
-            }
-            case PSB -> {
-                return psb;
-            }
-            case VTB -> {
-                return vtb;
-            }
-            case TINKOFF -> {
-                return tinkoff;
-            }
-            case RAIFFEISEN -> {
-                return raiffeisenbank;
-            }
-            case GAZPROM -> {
-                return gazprom;
-            }
-            case ALFA -> {
-                return alfabank;
-            }
-        }
-        return Collections.EMPTY_LIST;
+        var list = switch (bank){
+            case SBER -> sber;
+            case PSB -> psb;
+            case VTB -> vtb;
+            case TINKOFF -> tinkoff;
+            case RAIFFEISEN -> raiffeisenbank;
+            case GAZPROM -> gazprom;
+            case ALFA -> alfabank;
+        };
+        return list;
     }
 
     private String getRandomBin(CardType cardType){
         StringBuilder bin = new StringBuilder();
         switch (cardType){
             case MIR -> {
-                bin.append("22");
+                bin.append(22);
                 bin.append(Randomizer.getRandomStringCode(4));
             }
             case VISA -> {
-                bin.append("4");
+                bin.append(4);
                 bin.append(Randomizer.getRandomStringCode(5));
                 break;
             }
@@ -103,11 +97,7 @@ public class CardGenerator extends AbstractGenerator {
                 bin.append(6);
                 bin.append(Randomizer.getRandomStringCode(5));
             }
-            case AMERICANEXPRESS -> {
-                bin.append(3);
-                bin.append(Randomizer.getRandomStringCode(5));
-            }
-            case MAESTRO -> {
+            case AMERICANEXPRESS, MAESTRO -> {
                 bin.append(3);
                 bin.append(Randomizer.getRandomStringCode(5));
             }
