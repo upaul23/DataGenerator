@@ -15,18 +15,18 @@
 
 **Персоны**
 
-Метод возвращает экземпляр FakePerson с заполненными полями. ФИО соответствует гендеру персоны.
+Метод возвращает экземпляр FakePerson с заполненными полями. ФИО соответствует гендеру персоны:
 
 ```java
 DataGenerator.persons().get() 
 ```
 
-Получение персоны с заранее заданным полом.
+Получение персоны с заранее заданным полом:
 
 ```java
 DataGenerator.persons().get(Gender.MALE)
 ```
-этим параметром в _**dagen.properties**_ задается диапозон годов рождения, генерируемых персон
+этим параметром в _**dagen.properties**_ задается диапозон годов рождения, генерируемых персон:
 
 ```properties
 yearOfBirthRange=1920-2005
@@ -34,7 +34,7 @@ yearOfBirthRange=1920-2005
 
 **Паспортные данные**
 
-Метод возвращает экземпляр FakeRussianPassport
+Метод возвращает экземпляр _FakeRussianPassport_:
 
 ```java
 DataGenerator.documents().passport()
@@ -48,7 +48,7 @@ DataGenerator.documents().snils()
 
 **Расчетный счет**
 
-Метод создания счета с заданными параметрами
+Метод создания счета с заданными параметрами:
 
 ```java
 DataGenerator.accountDetails().account(PersoneType.PERSON, Currency.RUB, ProfileType.COMMERCIAL, DataGenerator.accountDetails().bank());
@@ -113,7 +113,7 @@ DataGenerator.contacts().email("test.ru")
 
 **Автомобильные гос. номера**
 
-Метод возвращает экземпляр класса _FakeCarStateNumber_
+Метод возвращает экземпляр класса _FakeCarStateNumber_:
 
 ```java
 DataGenerator.carsGenerator().stateNumber()
@@ -121,7 +121,7 @@ DataGenerator.carsGenerator().stateNumber()
 
 **Реквизиты банковских карт**
 
-Метод вернет экземлпяр FakeCard со случыйными реквизитами
+Метод вернет экземлпяр _FakeCard_ со случыйными реквизитами:
 
 ```java
 
@@ -131,13 +131,13 @@ DataGenerator.bankCard().card()
 
 Метод вернет экземпляр карты с реальным БИНом, который соответствует банку и типу платежной системы.
 В случае, если в словаре не было найдено нужного типа платежной системы, то номер карты будет сгенерирован
-полностью случайно. Имя владельца будет автоматически транслитерированы в латинские буквы. 
+полностью случайно. Имя владельца будет автоматически транслитерировано в латинские буквы. 
 
 ```java
 DataGenerator.bankCard().card(Banks.SBER, CardType.MIR, "Василий Пупкин")
 ```
 
-Метод сгенерирует экземпляр карты у казаным типом платженой системы.
+Метод сгенерирует экземпляр карты с указанным типом платежной системы:
 
 ```java
 DataGenerator.bankCard().card(CardType.VISA)
