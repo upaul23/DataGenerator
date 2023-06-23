@@ -37,14 +37,26 @@ yearOfBirthRange=1920-2005
 Метод возвращает экземпляр _FakeRussianPassport_:
 
 ```java
+@Data
+@Builder
+public class FakeRussianPassport {
+    String series;
+    String number;
+    String issued;
+    String issueDate;
+    String code;
+}
+```
+
+```java
 DataGenerator.documents().passport()
 ```
 
 **СНИЛС**
+
 ```java
 DataGenerator.documents().snils()
 ```
-
 
 **Расчетный счет**
 
@@ -54,7 +66,7 @@ DataGenerator.documents().snils()
 DataGenerator.accountDetails().account(PersoneType.PERSON, Currency.RUB, ProfileType.COMMERCIAL, DataGenerator.accountDetails().bank());
 ```
 
-Метод создания счета со случайными параметрами
+Метод создания счета со случайными параметрами:
 
 ```java
 DataGenerator.accountDetails().account();
@@ -65,6 +77,17 @@ DataGenerator.accountDetails().account();
 Метод возвращает экземпляр класса Bank
 
 ```java
+@Builder
+@Data
+public class Bank {
+    private String correspondentAccount;
+    private String bik;
+    private String name;
+    private String city;
+}
+```
+
+```java
 DataGenerator.accountDetails().bank()
 ```
 
@@ -73,12 +96,10 @@ DataGenerator.accountDetails().bank()
 DataGenerator.accountDetails().inn12()
 ```
 
-
 **ИНН для ЮЛ**
 ```java
 DataGenerator.accountDetails().inn10()
 ```
-
 
 **ОГРН для ЮЛ**
 ```java
@@ -87,14 +108,16 @@ DataGenerator.accountDetails().ogrn()
 
 **Номер мобильного телефона**
 
-Возвращается строка в формате +7 XXX XXX XXXX
+Возвращается строка в формате +7 YYY XXX XXXX, где YYY соотвествует коду мобильного оператора,
+начинающегося с цифры 9
 ```java
 DataGenerator.contacts().mobile()
 ```
 
 **Номер городского телефона**
 
-Возвращается строка в формате +7 XXX XXX XXXX
+Возвращается строка в формате +7 YYY XXX XXXX, где YYY соотвествует разряду городскиих номеров,
+начинающегося с фирцы 8
 
 ```java
 DataGenerator.contacts().cityPhone()
