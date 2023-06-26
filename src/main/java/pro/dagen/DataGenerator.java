@@ -62,7 +62,7 @@ public class DataGenerator {
         return carsGenerator;
     }
     public static CardGenerator bankCard(){
-        if(carsGenerator == null){
+        if(cardGenerator == null){
             cardGenerator = new CardGenerator();
         }
         return cardGenerator;

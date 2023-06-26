@@ -37,69 +37,35 @@ public class Randomizer {
     public static String getRandomNumber(int length) {
         // Use digits
         char[] chars = "0123456789".toCharArray();
-
-        StringBuilder sb = new StringBuilder();
-        Random random = new Random();
-
-        for (int i = 0; i < length; i++) {
-            char c = chars[random.nextInt(chars.length)];
-            sb.append(c);
-        }
-
-        return sb.toString();
+        return getRandomFromCharArray(length, chars);
     }
 
     public static long randomBetween(long minValue, long maxValue) {
         return minValue + Math.round(Math.random() * (maxValue - minValue));
     }
 
-
     public static String getRandomString(Integer minLength, Integer maxLength) {
         // Use english alphabet.
         char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-
-        StringBuilder sb = new StringBuilder();
-        Random random = new Random();
-
         // Select length of the string
         int length = new Random().nextInt(maxLength - minLength) + minLength;
-
-        for (int i = 0; i < length; i++) {
-            char c = chars[random.nextInt(chars.length)];
-            sb.append(c);
-        }
-
-        return sb.toString();
+        return getRandomFromCharArray(length, chars);
     }
-
-    public static String getRandomStringCode(int length) {
-        char[] chars = "0123456789".toCharArray();
-
-        StringBuilder sb = new StringBuilder();
-        Random random = new Random();
-
-        for (int i = 0; i < length; i++) {
-            char c = chars[random.nextInt(chars.length)];
-            sb.append(c);
-        }
-        return sb.toString();
-    }
-
     public static String getRandomStringCyrilic(Integer minLength, Integer maxLength) {
         // Use english alphabet.
         char[] chars = "йцукенгшщзхъфывапролджэячсмитьбюё".toCharArray();
-
-        StringBuilder sb = new StringBuilder();
-        Random random = new Random();
-
         // Select length of the string
         int length = new Random().nextInt(maxLength - minLength) + minLength;
+        return getRandomFromCharArray(length, chars);
+    }
 
+    public static String getRandomFromCharArray(int length, char[] inputArray){
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
         for (int i = 0; i < length; i++) {
-            char c = chars[random.nextInt(chars.length)];
+            char c = inputArray[random.nextInt(inputArray.length)];
             sb.append(c);
         }
-
         return sb.toString();
     }
 

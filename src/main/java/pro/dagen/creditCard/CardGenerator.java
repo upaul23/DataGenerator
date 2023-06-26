@@ -82,24 +82,24 @@ public class CardGenerator extends AbstractGenerator {
         switch (cardType){
             case MIR -> {
                 bin.append(22);
-                bin.append(Randomizer.getRandomStringCode(4));
+                bin.append(Randomizer.getRandomNumber(4));
             }
             case VISA -> {
                 bin.append(4);
-                bin.append(Randomizer.getRandomStringCode(5));
+                bin.append(Randomizer.getRandomNumber((5)));
                 break;
             }
             case MASTERCARD -> {
                 bin.append(5);
-                bin.append(Randomizer.getRandomStringCode(5));
+                bin.append(Randomizer.getRandomNumber(5));
             }
             case UNIONPAY -> {
                 bin.append(6);
-                bin.append(Randomizer.getRandomStringCode(5));
+                bin.append(Randomizer.getRandomNumber(5));
             }
             case AMERICANEXPRESS, MAESTRO -> {
                 bin.append(3);
-                bin.append(Randomizer.getRandomStringCode(5));
+                bin.append(Randomizer.getRandomNumber(5));
             }
         }
         return bin.toString();

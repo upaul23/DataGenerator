@@ -15,7 +15,7 @@ public class CarsGenerator extends AbstractGenerator {
         String[] code = Randomizer.getRandomElementFromList(regionCodeList);
         StringBuilder number = new StringBuilder();
         number.append(randomChars(1));
-        number.append(Randomizer.getRandomStringCode(3));
+        number.append(Randomizer.getRandomNumber(3));
         number.append(randomChars(2));
         return FakeCarStateNumber.builder()
                 .number(number.toString())
@@ -27,15 +27,6 @@ public class CarsGenerator extends AbstractGenerator {
 
     private String randomChars(int length){
         char[] chars = "АВЕКМНОРСТУХ".toCharArray();
-
-        StringBuilder sb = new StringBuilder();
-        Random random = new Random();
-
-        for (int i = 0; i < length; i++) {
-            char c = chars[random.nextInt(chars.length)];
-            sb.append(c);
-        }
-
-        return sb.toString();
+        return Randomizer.getRandomFromCharArray(length, chars);
     }
 }
