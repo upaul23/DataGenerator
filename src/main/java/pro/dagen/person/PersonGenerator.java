@@ -1,5 +1,6 @@
 package pro.dagen.person;
 
+import org.apache.commons.lang3.StringUtils;
 import pro.dagen.config.Config;
 import pro.dagen.fileworker.ReaderFile;
 import pro.dagen.randomizer.Randomizer;
@@ -43,10 +44,11 @@ public class PersonGenerator {
         }
         else {
             fio = FIO.builder()
-                    .lastname(Randomizer.getRandomElementFromList(surnames))
-                    .firstname(Randomizer.getRandomElementFromList(maleNames))
-                    .parentName(Randomizer.getRandomElementFromList(parentnames))
+                    .lastname(StringUtils.capitalize(Randomizer.getRandomElementFromList(surnames)))
+                    .firstname(StringUtils.capitalize(Randomizer.getRandomElementFromList(maleNames)))
+                    .parentName(StringUtils.capitalize(Randomizer.getRandomElementFromList(parentnames)))
                     .build();
+
         }
         return FakePerson.builder()
                 .gender(gender)

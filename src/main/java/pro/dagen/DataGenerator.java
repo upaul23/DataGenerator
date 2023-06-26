@@ -4,6 +4,7 @@ import pro.dagen.account.AccountDetailsGenerator;
 import pro.dagen.address.AddressGenerator;
 import pro.dagen.cars.CarsGenerator;
 import pro.dagen.contacts.ContactsGenerator;
+import pro.dagen.creditCard.CardGenerator;
 import pro.dagen.documents.DocumentGenerator;
 import pro.dagen.person.PersonGenerator;
 
@@ -15,6 +16,8 @@ public class DataGenerator {
     static private AddressGenerator addressGenerator;
     static private ContactsGenerator contactsGenerator;
     static private CarsGenerator carsGenerator;
+
+    static private CardGenerator cardGenerator;
 
     public static PersonGenerator persons(){
         if(personGenerator == null){
@@ -45,18 +48,24 @@ public class DataGenerator {
         return contactsGenerator;
     }
 
-    public static AddressGenerator addressGenerator(){
+    public static AddressGenerator address(){
         if(addressGenerator == null){
             addressGenerator = new AddressGenerator();
         }
         return addressGenerator;
     }
 
-    public static CarsGenerator carsGenerator(){
+    public static CarsGenerator cars(){
         if(carsGenerator == null){
             carsGenerator = new CarsGenerator();
         }
         return carsGenerator;
+    }
+    public static CardGenerator bankCard(){
+        if(cardGenerator == null){
+            cardGenerator = new CardGenerator();
+        }
+        return cardGenerator;
     }
 
 }

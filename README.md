@@ -15,18 +15,18 @@
 
 **Персоны**
 
-Метод возвращает экземпляр FakePerson с заполненными полями. ФИО соответствует гендеру персоны.
+Метод возвращает экземпляр FakePerson с заполненными полями. ФИО соответствует гендеру персоны:
 
 ```java
 DataGenerator.persons().get() 
 ```
 
-Получение персоны с заранее заданным полом.
+Получение персоны с заранее заданным полом:
 
 ```java
 DataGenerator.persons().get(Gender.MALE)
 ```
-этим параметром в _**dagen.properties**_ задается диапозон годов рождения, генерируемых персон
+этим параметром в _**dagen.properties**_ задается диапозон годов рождения, генерируемых персон:
 
 ```properties
 yearOfBirthRange=1920-2005
@@ -34,27 +34,39 @@ yearOfBirthRange=1920-2005
 
 **Паспортные данные**
 
-Метод возвращает экземпляр FakeRussianPassport
+Метод возвращает экземпляр _FakeRussianPassport_:
+
+```java
+@Data
+@Builder
+public class FakeRussianPassport {
+    String series;
+    String number;
+    String issued;
+    String issueDate;
+    String code;
+}
+```
 
 ```java
 DataGenerator.documents().passport()
 ```
 
 **СНИЛС**
+
 ```java
 DataGenerator.documents().snils()
 ```
 
-
 **Расчетный счет**
 
-Метод создания счета с заданными параметрами
+Метод создания счета с заданными параметрами:
 
 ```java
 DataGenerator.accountDetails().account(PersoneType.PERSON, Currency.RUB, ProfileType.COMMERCIAL, DataGenerator.accountDetails().bank());
 ```
 
-Метод создания счета со случайными параметрами
+Метод создания счета со случайными параметрами:
 
 ```java
 DataGenerator.accountDetails().account();
@@ -65,6 +77,17 @@ DataGenerator.accountDetails().account();
 Метод возвращает экземпляр класса Bank
 
 ```java
+@Builder
+@Data
+public class Bank {
+    private String correspondentAccount;
+    private String bik;
+    private String name;
+    private String city;
+}
+```
+
+```java
 DataGenerator.accountDetails().bank()
 ```
 
@@ -73,12 +96,10 @@ DataGenerator.accountDetails().bank()
 DataGenerator.accountDetails().inn12()
 ```
 
-
 **ИНН для ЮЛ**
 ```java
 DataGenerator.accountDetails().inn10()
 ```
-
 
 **ОГРН для ЮЛ**
 ```java
@@ -87,14 +108,16 @@ DataGenerator.accountDetails().ogrn()
 
 **Номер мобильного телефона**
 
-Возвращается строка в формате +7 XXX XXX XXXX
+Возвращается строка в формате +7 YYY XXX XXXX, где YYY соотвествует коду мобильного оператора,
+начинающегося с цифры 9
 ```java
 DataGenerator.contacts().mobile()
 ```
 
 **Номер городского телефона**
 
-Возвращается строка в формате +7 XXX XXX XXXX
+Возвращается строка в формате +7 YYY XXX XXXX, где YYY соотвествует разряду городскиих номеров,
+начинающегося с фирцы 8
 
 ```java
 DataGenerator.contacts().cityPhone()
@@ -113,13 +136,61 @@ DataGenerator.contacts().email("test.ru")
 
 **Автомобильные гос. номера**
 
-Метод возвращает экземпляр класса _FakeCarStateNumber_
+Метод возвращает экземпляр класса _FakeCarStateNumber_:
 
 ```java
 DataGenerator.carsGenerator().stateNumber()
 ```
 
+**Реквизиты банковских карт**
 
+Метод вернет экземлпяр _FakeCard_ со случыйными реквизитами:
+
+```java
+
+DataGenerator.bankCard().card()
+        
+```
+
+Метод вернет экземпляр карты с реальным БИНом, который соответствует банку и типу платежной системы.
+В случае, если в словаре не было найдено нужного типа платежной системы, то номер карты будет сгенерирован
+полностью случайно. Имя владельца будет автоматически транслитерировано в латинские буквы. 
+
+```java
+DataGenerator.bankCard().card(Banks.SBER, CardType.MIR, "Василий Пупкин")
+```
+
+Метод сгенерирует экземпляр карты с указанным типом платежной системы:
+
+```java
+DataGenerator.bankCard().card(CardType.VISA)
+```
+
+Список поддерживаемых платежных систем:
+
+```java
+public enum CardType {
+    MIR,
+    VISA,
+    MASTERCARD,
+    MAESTRO,
+    UNIONPAY,
+    AMERICANEXPRESS
+}
+```
+
+Список поддерживаемых БИНов банков эмитентов:
+```java
+public enum Banks {
+    SBER,
+    VTB,
+    TINKOFF,
+    PSB,
+    RAIFFEISEN,
+    ALFA,
+    GAZPROM
+}
+```
 
 **Как подключить библиотеку?**
 
@@ -129,12 +200,18 @@ DataGenerator.carsGenerator().stateNumber()
 <dependency>
     <groupId>pro.dagen</groupId>
     <artifactId>datagenerator</artifactId>        
-    <version>1.0.2</version>    
+    <version>1.2.0</version>    
 </dependency>
-
 
 ```
 
+
+**ОТКАЗ ОТ ОТВЕТСТВЕННОСТИ**
+
+Номера кредитных карт и другие данные, абсолютно случайны и не имеют никакой реальной ценности. 
+Не пытайтесь использовать поддельные данные кредитной карты для совершения какой-либо покупки,
+так как это не сработает. Попытка взлома или мошенничества с использованием поддельной информации
+кредитной карты является незаконной и может привести к наказанию, например тюремному заключению.
 
 
 
