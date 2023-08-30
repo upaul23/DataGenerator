@@ -6,6 +6,7 @@ import pro.dagen.cars.CarsGenerator;
 import pro.dagen.contacts.ContactsGenerator;
 import pro.dagen.creditCard.CardGenerator;
 import pro.dagen.documents.DocumentGenerator;
+import pro.dagen.person.FamilyGenarator;
 import pro.dagen.person.PersonGenerator;
 
 public class DataGenerator {
@@ -16,6 +17,7 @@ public class DataGenerator {
     static private AddressGenerator addressGenerator;
     static private ContactsGenerator contactsGenerator;
     static private CarsGenerator carsGenerator;
+    static private FamilyGenarator familyGenarator;
 
     static private CardGenerator cardGenerator;
 
@@ -68,4 +70,11 @@ public class DataGenerator {
         return cardGenerator;
     }
 
+
+    public static FamilyGenarator family(){
+        if(familyGenarator == null){
+            familyGenarator = new FamilyGenarator();
+        }
+        return familyGenarator;
+    }
 }

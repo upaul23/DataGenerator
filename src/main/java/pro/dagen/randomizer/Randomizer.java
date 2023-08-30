@@ -1,5 +1,7 @@
 package pro.dagen.randomizer;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -32,6 +34,18 @@ public class Randomizer {
         return String.format("%02d", gc.get(Calendar.DAY_OF_MONTH)) + "."
                 + String.format("%02d", gc.get(Calendar.MONTH) + 1) + "."
                 + gc.get(Calendar.YEAR);
+    }
+
+    public static LocalDate getDateInRange(Integer minYear, Integer maxYear) {
+        GregorianCalendar gc = new GregorianCalendar();
+
+        int year = (int) randomBetween(minYear, maxYear);
+        gc.set(Calendar.YEAR, year);
+
+        int dayOfYear = (int) randomBetween(1, gc.getActualMaximum(Calendar.DAY_OF_YEAR));
+        gc.set(Calendar.DAY_OF_YEAR, dayOfYear);
+
+        return LocalDate.parse(Randomizer.getRandomDate(minYear, maxYear), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
     public static String getRandomNumber(int length) {

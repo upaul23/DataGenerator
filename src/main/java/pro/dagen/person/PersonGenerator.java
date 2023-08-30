@@ -1,10 +1,14 @@
 package pro.dagen.person;
 
+import com.github.petrovich4j.Case;
+import com.github.petrovich4j.NameType;
+import com.github.petrovich4j.Petrovich;
 import org.apache.commons.lang3.StringUtils;
 import pro.dagen.config.Config;
 import pro.dagen.fileworker.ReaderFile;
 import pro.dagen.randomizer.Randomizer;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class PersonGenerator {
@@ -12,20 +16,22 @@ public class PersonGenerator {
     private List<String> femaleNames;
     private List<String> maleNames;
     private List<String> surnames;
-    private List<String> parentnames;
+    private List<String[]> parentnames;
 
-    private Config config = new Config();
+    protected Config config = new Config();
     private int birthDayRangeStart;
     private int birthDayRangeEnd;
+    Petrovich petrovich;
 
     public PersonGenerator() {
         femaleNames = ReaderFile.readByLine(config.getProperties().getProperty("femalenames"));
         maleNames = ReaderFile.readByLine(config.getProperties().getProperty("malenames"));
         surnames = ReaderFile.readByLine(config.getProperties().getProperty("surnames"));
-        parentnames = ReaderFile.readByLine(config.getProperties().getProperty("parentnames"));
+        parentnames = ReaderFile.parseCsv(config.getProperties().getProperty("parentnames"));
         String range = config.getProperties().getProperty("yearOfBirthRange");
         birthDayRangeStart = Integer.parseInt(range.substring(0,4));
         birthDayRangeEnd = Integer.parseInt(range.substring(5, range.length()));
+        petrovich = new Petrovich();
     }
 
     public FakePerson get(){
@@ -39,42 +45,35 @@ public class PersonGenerator {
             fio = FIO.builder()
                     .lastname(getFemaleLastName())
                     .firstname(Randomizer.getRandomElementFromList(femaleNames))
-                    .parentName(getFemaleParentName())
+                    .parentName(getParentName(StringUtils.capitalize(Randomizer.getRandomElementFromList(maleNames)), Gender.FEMALE))
                     .build();
         }
         else {
             fio = FIO.builder()
                     .lastname(StringUtils.capitalize(Randomizer.getRandomElementFromList(surnames)))
                     .firstname(StringUtils.capitalize(Randomizer.getRandomElementFromList(maleNames)))
-                    .parentName(StringUtils.capitalize(Randomizer.getRandomElementFromList(parentnames)))
+                    .parentName(getParentName(StringUtils.capitalize(Randomizer.getRandomElementFromList(maleNames)), Gender.MALE))
                     .build();
-
         }
+        LocalDate birthDate = Randomizer.getDateInRange(birthDayRangeStart, birthDayRangeEnd);
         return FakePerson.builder()
                 .gender(gender)
                 .fio(fio)
-                .birthDate(Randomizer.getRandomDate(birthDayRangeStart, birthDayRangeEnd))
+                .birthDate(birthDate)
                 .build();
     }
 
     private String getFemaleLastName(){
         String lastname = Randomizer.getRandomElementFromList(surnames);
-        String substring = lastname.substring(lastname.length() - 2, lastname.length());
-        if(substring.equals("о")){
-            return lastname;
-        }
-        else if(substring.equals("ва")){
-            return lastname;
-        }
-        else {
-            return lastname + "ва";
-        }
+        return getFemaleLastName(lastname);
     }
 
-    private String getFemaleParentName(){
-        String parentName = Randomizer.getRandomElementFromList(parentnames);
-        return parentName.replaceAll("вич", "ова");
+    protected String getFemaleLastName(String lastname){
+        return petrovich.say(lastname, NameType.LastName, com.github.petrovich4j.Gender.Female, Case.Accusative);
     }
 
-
+    protected String getParentName(String maleName, Gender gender){
+        petrovich
+        return petrovich.say(maleName, NameType.PatronymicName, gender.getPGender(), Case.Accusative);
+    }
 }
